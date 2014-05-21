@@ -15,7 +15,7 @@ use <knob_panelolu.scad>
 ///////////////////////////////////////////////////////////
 //front, back or Assembly
 ///////////////////////////////////////////////////////////
-side=0; //1 = front, -1 = back  2=printing layout -2 Electronics module 0=assembly model
+side=2; //1 = front, -1 = back  2=printing layout -2 Electronics module 3 mounts 0=assembly model
 ///////////////////////////////////////////////////////////
 
 m3_diameter = 3.6;
@@ -35,7 +35,7 @@ lcd_board_x=99;
 lcd_board_y=61;
 lcd_board_z=1.6; //does not include metal tabs on base
 
-lcd_hole_d=3.4;
+lcd_hole_d=3.6;
 lcd_hole_offset=(lcd_hole_d/2)+1;
 
 //board edge to center of first connector hole
@@ -104,6 +104,16 @@ shell_split_z = pl_z+SD_slot_z-0.01; //board split in the top of the slots
 shell_width=wall_width+clearance;
 shell_top = pl_z+click_encoder_z+2;
 
+//mount variables
+mount_x=(lcd_hole_offset+shell_width)*2;
+mount_z=4;
+mount_a=19;
+mount_b=49;
+mount_c=62.9;
+mount_angle=41.87;
+
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // front
@@ -115,7 +125,7 @@ if (side==1)
 // back
 else if(side==-1)
 {
-	back();
+		back();
 }
 //Printing plate
 else if(side==2)
@@ -132,6 +142,14 @@ else if(side==-2)
 {
 	LCD_assembly();
 }
+//mounts
+else if(side==3)
+{
+	mount();
+	translate([10,10,0])
+		mount();
+}	
+
 //assembly
 else
 {
@@ -140,8 +158,51 @@ else
 	LCD_assembly();
 	color("orange") translate([click_encoder_offset_x,click_encoder_offset_y,wall_width+click_encoder_shaft_y+click_encoder_z-2])
 		knob_assembly(click_encoder_knob_dia/2);
+	for(i=[mount_x,pl_x+mount_x/2]){
+		translate([i-shell_width,29.3-shell_width,-32.7-shell_width])
+			rotate([0,-90,0])
+				rotate([0,0,-mount_angle])
+				mount();
+	}
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+
+module mount()
+{
+	difference(){
+		union(){
+			linear_extrude(height=mount_x)
+				polygon([[mount_c-mount_a,-mount_z],
+						[mount_c-mount_a-mount_z,-mount_z],
+						[mount_c-mount_a-mount_z,-mount_z/2],
+						[-mount_z/2,mount_b-mount_z],
+						[-mount_a,mount_b-mount_z],
+						[-mount_a,mount_b],
+						[0,mount_b],
+						[mount_c-mount_a,0]]);
+
+			for(i=[(lcd_hole_offset-pl_mounting_hole2_y)/2,(pl_mounting_hole2_y-lcd_hole_offset)/2]){
+				translate([21.30,16.73,mount_x])
+					rotate([0,90,mount_angle])
+						translate([0,i,0])
+							#cube([mount_x,mount_x,1.6]);
+			}
+		}
+		//case holes
+		for(i=[(lcd_hole_offset-pl_mounting_hole2_y)/2,(pl_mounting_hole2_y-lcd_hole_offset)/2])
+		translate([17.4,20.5,mount_x/2])
+			rotate([0,90,mount_angle])
+				translate([0,i,0]){
+					cylinder(r=lcd_hole_d/2, h=mount_z*4, $fn=20);
+					cylinder(r=m3_nut_diameter_bigger/2+layer_height*2, h=3.5, $fn=6);
+				}
+		//frame mounting holes
+		translate([-11.5,35,mount_x/2])
+			rotate([0,90,90])
+				cylinder(r=lcd_hole_d/2, h=mount_z*4, $fn=20);
+	}
+}
+
 
 module back() {
 	side=8; //for the supports
@@ -149,7 +210,7 @@ module back() {
 		union(){
 			difference(){
 				translate([-shell_width,-shell_width,-shell_width])
-					cube([pl_x+shell_width*2,pl_y+shell_width*2,shell_split_z+shell_width]);
+				roundedRect([pl_x+shell_width*2,pl_y+shell_width*2,shell_split_z+shell_width], 2.5);
 				translate([-clearance,-clearance,-clearance])
 					cube([pl_x+clearance*2,pl_y+clearance*2,shell_split_z+clearance+0.01]);
 				LCD_assembly();
@@ -162,7 +223,7 @@ module back() {
 					cube([side,side,4.35]);
 			}
 			//additional support
-			translate([lcd_board_x-side,-wall_width,-shell_width])
+			translate([lcd_board_x-side-10,-wall_width,-shell_width])
 				cube([side,side/2,8.75]);
 		}
 		case_screw_holes(false,0);
@@ -175,7 +236,7 @@ module front() {
 		union(){
 			difference(){
 				translate([-shell_width,-shell_width,shell_split_z])
-					cube([pl_x+shell_width*2,pl_y+shell_width*2,shell_top-shell_split_z+shell_width]);
+					roundedRect([pl_x+shell_width*2,pl_y+shell_width*2,shell_top-shell_split_z+shell_width],2.5);
 				translate([-clearance,-clearance,shell_split_z-0.01])
 					cube([pl_x+clearance*2,pl_y+clearance*2,shell_top-shell_split_z+clearance]);
 				LCD_assembly();
@@ -277,7 +338,7 @@ module case_screw_holes(nut_trap=false,z_height=0, dia=lcd_hole_d) {
 				cylinder(r=m3_nut_diameter_bigger/2+layer_height*2, h=shell_width, $fn=6);
 		} else {
 				translate([i,j,z_height])
-				cylinder(r=dia/2,h=shell_width*2+10,$fn=12,center=true);
+				cylinder(r=dia/2,h=shell_width*2+30,$fn=12,center=true);
 		}
 	}
 
@@ -294,6 +355,39 @@ module corner_supports(h=5,z=0,side=5) {
 
 }
 
+
+module roundedRect(size, radius,center=false) {
+	x = size[0]; 
+	y = size[1]; 
+	z = size[2]; 
+	
+	radius_sharp=0.1;
+
+	linear_extrude(height=z)
+	{
+	if(center==true) {
+	hull() { 
+		// place 4 circles in the corners, with the given radius 
+		translate([(-x/2)+(radius/2), (-y/2)+(radius/2), 0]) circle(r=radius); 
+		translate([(x/2)-(radius/2), (-y/2)+(radius/2), 0]) circle(r=radius); 
+		translate([(-x/2)+(radius/2), (y/2)-(radius/2), 0]) circle(r=radius); 
+		translate([(x/2)-(radius/2), (y/2)-(radius/2), 0]) circle(r=radius); 
+		translate([0,0,0]);
+	} 
+	}
+	else
+	{
+	hull() { 
+		// place 4 circles in the corners, with the given radius 
+		translate([(0)+(radius), (0)+(radius), 0]) circle(r=radius); 
+		translate([(x)-(radius), (0)+(radius), 0]) circle(r=radius); 
+		translate([(0)+(radius), (y)-(radius), 0]) circle(r=radius); 
+		translate([(x)-(radius), (y)-(radius), 0]) circle(r=radius); 
+		translate([0,0,0]);
+	}
+	}
+	}
+}
 
 
 
