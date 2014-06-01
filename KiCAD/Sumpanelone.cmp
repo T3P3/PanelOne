@@ -1,0 +1,52 @@
+Cmp-Mod V01 Genere par PcbNew le 26/11/2013 20:53:00
+
+BeginCmp
+TimeStamp = /528F125A;
+Reference = LCD1;
+ValeurCmp = LCD_2X16_SIL;
+IdModule  = LCD_2004;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F130A;
+Reference = P1;
+ValeurCmp = CONN_AUX3;
+IdModule  = PIN_ARRAY_5x2;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F1314;
+Reference = P2;
+ValeurCmp = CONN_AUX2;
+IdModule  = PIN_ARRAY_5x2;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F134A;
+Reference = P4;
+ValeurCmp = SD_Header;
+IdModule  = SD_HEADER;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F1C57;
+Reference = RV1;
+ValeurCmp = CONTRAST;
+IdModule  = BOURNS_3306P;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F7F4B;
+Reference = RV2;
+ValeurCmp = BRIGHTNESS;
+IdModule  = BOURNS_3306P;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F2021;
+Reference = S1;
+ValeurCmp = ENCODER;
+IdModule  = ALPS_EC12E2424407;
+EndCmp
+
+EndListe
