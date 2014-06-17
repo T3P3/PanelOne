@@ -1,4 +1,18 @@
-Cmp-Mod V01 Genere par PcbNew le 26/11/2013 20:53:00
+Cmp-Mod V01 Genere par PcbNew le 17/06/2014 17:41:18
+
+BeginCmp
+TimeStamp = /539F1C08;
+Reference = C1;
+ValeurCmp = 2.2uF;
+IdModule  = c_1206;
+EndCmp
+
+BeginCmp
+TimeStamp = /539F32C3;
+Reference = J1;
+ValeurCmp = MICROSD;
+IdModule  = MICRO_SD;
+EndCmp
 
 BeginCmp
 TimeStamp = /528F125A;
@@ -22,24 +36,17 @@ IdModule  = PIN_ARRAY_5x2;
 EndCmp
 
 BeginCmp
-TimeStamp = /528F134A;
-Reference = P4;
-ValeurCmp = SD_Header;
-IdModule  = SD_HEADER;
-EndCmp
-
-BeginCmp
 TimeStamp = /528F1C57;
 Reference = RV1;
 ValeurCmp = CONTRAST;
-IdModule  = BOURNS_3306P;
+IdModule  = TC33X-POT;
 EndCmp
 
 BeginCmp
 TimeStamp = /528F7F4B;
 Reference = RV2;
 ValeurCmp = BRIGHTNESS;
-IdModule  = BOURNS_3306P;
+IdModule  = TC33X-POT;
 EndCmp
 
 BeginCmp
@@ -47,6 +54,20 @@ TimeStamp = /528F2021;
 Reference = S1;
 ValeurCmp = ENCODER;
 IdModule  = ALPS_EC12E2424407;
+EndCmp
+
+BeginCmp
+TimeStamp = /539F37A2;
+Reference = U1;
+ValeurCmp = LM7805;
+IdModule  = SOT223;
+EndCmp
+
+BeginCmp
+TimeStamp = /539EB448;
+Reference = U2;
+ValeurCmp = 4050;
+IdModule  = SO16N;
 EndCmp
 
 EndListe
