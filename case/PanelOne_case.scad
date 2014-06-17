@@ -59,17 +59,17 @@ click_encoder_shaft_dia=6.9+clearance;
 click_encoder_shaft_y=12.2;
 click_encoder_knob_dia=24;
 click_encoder_offset_x=112.2;
-click_encoder_offset_y=30.8;
+click_encoder_offset_y=23.8;//moved down 7mm in version 2.0a of PanelOne
 
 
 //contrast and brightness holes
 cb_dia=4; //hole diameter for adjustmenet screw
 cb_y=15;
 con_offset_x=107.2;
-con_offset_y=16.1;
+con_offset_y=9.1; //moved down 7mm in version 2.0a of PanelOne
 con_offset_z=pl_z;
 bri_offset_x=117.1;
-bri_offset_y=16.0;
+bri_offset_y=9.1;//moved down 7mm in version 2.0a of PanelOne
 bri_offset_z=con_offset_z;
 
 //headers
@@ -248,10 +248,10 @@ module front() {
 						cube([side,side,shell_top-shell_split_z+wall_width]);
 				}
 			//additional supports
-			for(i=[-wall_width,pl_y-side/2+wall_width]){
-				translate([lcd_board_x-side,i,shell_split_z])
-				cube([side,side/2,shell_top-shell_split_z+wall_width]);
-			}
+			//for(i=[-wall_width,pl_y-side/2+wall_width]){
+			//	translate([lcd_board_x-side,i,shell_split_z])
+			//	cube([side,side/2,shell_top-shell_split_z+wall_width]);
+			//}
 		}
 		case_screw_holes(false,shell_top+shell_width);
 	}
