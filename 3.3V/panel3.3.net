@@ -1,0 +1,190 @@
+# EESchema Netlist Version 1.1 created  13/07/2014 18:59:28
+(
+ ( /53B4865F $noname  C1 2.2uF {Lib=CP1}
+  (    1 +3.3V )
+  (    2 GND )
+ )
+ ( /539EB43C $noname  U2 4050 {Lib=4050}
+  (    1 VCC )
+  (    2 /_CLK )
+  (    3 /CLK )
+  (    4 /_DI )
+  (    5 /DO )
+  (    6 /_CS )
+  (    7 /CS )
+  (    8 GND )
+ )
+ ( /539F37A2 $noname  U1 MIC5209-3.3YS {Lib=LM7805}
+  (    1 +5V )
+  (    2 GND )
+  (    3 +3.3V )
+  (    4 ? )
+ )
+ ( /539F32C3 $noname  J1 MICROSD {Lib=MICROSD}
+  (    1 ? )
+  (    2 /_CS )
+  (    3 /_DI )
+  (    4 +3.3V )
+  (    5 /_CLK )
+  (    6 GND )
+  (    7 /DI )
+  (    8 ? )
+  (  GND GND )
+ )
+ ( /528F7F4B $noname  RV2 BRIGHTNESS {Lib=POT}
+  (    1 ? )
+  (    2 +5V )
+  (    3 N-000028 )
+ )
+ ( /528F2021 $noname  S1 ENCODER {Lib=ENCODER}
+  (    1 N-000029 )
+  (    2 GND )
+  (    3 N-000030 )
+  (    4 GND )
+  (    5 N-000017 )
+ )
+ ( /528F1C57 $noname  RV1 CONTRAST {Lib=POT}
+  (    1 GND )
+  (    2 N-000031 )
+  (    3 ? )
+ )
+ ( /528F1314 $noname  P2 CONN_AUX2 {Lib=CONN_5X2}
+  (    1 +5V )
+  (    2 GND )
+  (    3 N-000030 )
+  (    4 N-000029 )
+  (    5 N-000020 )
+  (    6 N-000021 )
+  (    7 N-000026 )
+  (    8 N-000014 )
+  (    9 N-000015 )
+  (   10 N-000033 )
+ )
+ ( /528F130A $noname  P1 CONN_AUX3 {Lib=CONN_5X2}
+  (    1 ? )
+  (    2 GND )
+  (    3 /CS )
+  (    4 /CLK )
+  (    5 /DO )
+  (    6 /DI )
+  (    7 N-000017 )
+  (    8 VCC )
+  (    9 ? )
+  (   10 ? )
+ )
+ ( /528F125A lcd_2x16_led_backlight-HY-1602F  LCD1 LCD_2X16_SIL {Lib=LCD_2X16_SIL}
+  (    1 GND )
+  (    2 VCC )
+  (    3 N-000031 )
+  (    4 N-000021 )
+  (    5 GND )
+  (    6 N-000014 )
+  (    7 ? )
+  (    8 ? )
+  (    9 ? )
+  (   10 ? )
+  (   11 N-000033 )
+  (   12 N-000015 )
+  (   13 N-000026 )
+  (   14 N-000020 )
+  (   15 N-000028 )
+  (   16 GND )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ CP*
+ SM*
+$endlist
+$component J1
+ MICRO_SD*
+ SD*
+$endlist
+$endfootprintlist
+}
+{ Pin List by Nets
+Net 1 "VCC" "VCC"
+ U2 1
+ LCD1 2
+ P1 8
+Net 4 "+3.3V" "+3.3V"
+ U1 3
+ C1 1
+ J1 4
+Net 5 "GND" "GND"
+ LCD1 5
+ LCD1 16
+ S1 2
+ S1 4
+ RV1 1
+ P2 2
+ P1 2
+ J1 GND
+ J1 GND
+ J1 GND
+ U2 8
+ C1 2
+ LCD1 1
+ U1 2
+ J1 6
+Net 6 "/_CS" "_CS"
+ J1 2
+ U2 6
+Net 7 "/CS" "CS"
+ U2 7
+ P1 3
+Net 8 "/DO" "DO"
+ U2 5
+ P1 5
+Net 9 "+5V" "+5V"
+ RV2 2
+ U1 1
+ P2 1
+Net 10 "/CLK" "CLK"
+ U2 3
+ P1 4
+Net 12 "/_DI" "_DI"
+ J1 3
+ U2 4
+Net 13 "/_CLK" "_CLK"
+ U2 2
+ J1 5
+Net 14 "" ""
+ P2 8
+ LCD1 6
+Net 15 "" ""
+ LCD1 12
+ P2 9
+Net 17 "" ""
+ P1 7
+ S1 5
+Net 20 "" ""
+ P2 5
+ LCD1 14
+Net 21 "" ""
+ LCD1 4
+ P2 6
+Net 26 "" ""
+ P2 7
+ LCD1 13
+Net 28 "" ""
+ RV2 3
+ LCD1 15
+Net 29 "" ""
+ P2 4
+ S1 1
+Net 30 "" ""
+ P2 3
+ S1 3
+Net 31 "" ""
+ RV1 2
+ LCD1 3
+Net 33 "" ""
+ LCD1 11
+ P2 10
+Net 34 "/DI" "DI"
+ P1 6
+ J1 7
+}
+#End

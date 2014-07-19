@@ -1,0 +1,73 @@
+Cmp-Mod V01 Genere par PcbNew le 17/06/2014 17:41:18
+
+BeginCmp
+TimeStamp = /539F1C08;
+Reference = C1;
+ValeurCmp = 2.2uF;
+IdModule  = c_1206;
+EndCmp
+
+BeginCmp
+TimeStamp = /539F32C3;
+Reference = J1;
+ValeurCmp = MICROSD;
+IdModule  = MICRO_SD;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F125A;
+Reference = LCD1;
+ValeurCmp = LCD_2X16_SIL;
+IdModule  = LCD_2004;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F130A;
+Reference = P1;
+ValeurCmp = CONN_AUX3;
+IdModule  = PIN_ARRAY_5x2;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F1314;
+Reference = P2;
+ValeurCmp = CONN_AUX2;
+IdModule  = PIN_ARRAY_5x2;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F1C57;
+Reference = RV1;
+ValeurCmp = CONTRAST;
+IdModule  = TC33X-POT;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F7F4B;
+Reference = RV2;
+ValeurCmp = BRIGHTNESS;
+IdModule  = TC33X-POT;
+EndCmp
+
+BeginCmp
+TimeStamp = /528F2021;
+Reference = S1;
+ValeurCmp = ENCODER;
+IdModule  = ALPS_EC12E2424407;
+EndCmp
+
+BeginCmp
+TimeStamp = /539F37A2;
+Reference = U1;
+ValeurCmp = LM7805;
+IdModule  = SOT223;
+EndCmp
+
+BeginCmp
+TimeStamp = /539EB448;
+Reference = U2;
+ValeurCmp = 4050;
+IdModule  = SO16N;
+EndCmp
+
+EndListe
