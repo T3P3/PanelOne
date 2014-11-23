@@ -15,7 +15,7 @@ use <knob_panelolu.scad>
 ///////////////////////////////////////////////////////////
 //front, back or Assembly
 ///////////////////////////////////////////////////////////
-side=2; //1 = front, -1 = back  2=printing layout -2 Electronics module 3 mounts 0=assembly model
+side=3; //1 = front, -1 = back  2=printing layout -2 Electronics module 3 mounts 0=assembly model
 ///////////////////////////////////////////////////////////
 
 m3_diameter = 3.6;
@@ -185,9 +185,12 @@ module mount()
 				translate([21.30,16.73,mount_x])
 					rotate([0,90,mount_angle])
 						translate([0,i,0])
-							#cube([mount_x,mount_x,1.6]);
+							cube([mount_x,mount_x,1.6]);
 			}
 		}
+		//shave off a bit of the mount brackets
+		translate([mount_c-mount_a-mount_z-3,-mount_z-8.5,-2])
+				cube([10,10,mount_x+4]);
 		//case holes
 		for(i=[(lcd_hole_offset-pl_mounting_hole2_y)/2,(pl_mounting_hole2_y-lcd_hole_offset)/2])
 		translate([17.4,20.5,mount_x/2])
